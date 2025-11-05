@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadab Ahmad | Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #0a0a0a;
+            --secondary-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --accent-color: #0d6efd;
+            --hover-color: #0a58ca;
+            --glow-color: rgba(13, 110, 253, 0.7);
+            --shadow-color: rgba(0, 0, 0, 0.7);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            background: transparent;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .profile-pic-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            margin: 0 auto 1.5rem;
+            border: 4px solid var(--accent-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: #555;
+            box-shadow: 0 0 25px var(--glow-color);
+            transition: all 0.3s ease;
+        }
+
+        .profile-pic-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px var(--glow-color);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3.2rem;
+            font-weight: 700;
+            text-shadow: 0 0 10px var(--glow-color);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            text-shadow: 0 0 8px var(--glow-color);
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 10px auto;
+            border-radius: 2px;
+            box-shadow: 0 0 8px var(--glow-color);
+        }
+
+        .hero {
+            text-align: center;
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--glow-color);
+            border: 1px solid var(--accent-color);
+        }
+
+        .hero .btn:hover {
+            background: var(--hover-color);
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px var(--glow-color);
+        }
+
+        #objective p {
+            font-size: 1.2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: auto;
+            font-style: italic;
+            color: #c0c0c0;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline-item, .qualifications-list li {
+            padding: 30px;
+            position: relative;
+            background: var(--secondary-color);
+            margin-bottom: 30px;
+            border-radius: 10px;
+            border: 1px solid #2a2a2a;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            cursor: pointer;
+        }
+        
+        .timeline-item:hover, .qualifications-list li:hover {
+            box-shadow: 0 0 20px var(--glow-color);
+            border-color: var(--accent-color);
+        }
+
+        .timeline-item.expanded, .qualifications-list li.expanded {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--glow-color);
+            border-color: var(--accent-color);
+            z-index: 10;
+        }
+
+        .timeline-item h3 {
+            margin-top: 0;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+        
+        .timeline-item p {
+            margin-bottom: 0;
+            color: #b0b0b0;
+        }
+
+        .timeline-item .duration {
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .qualifications-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .qualifications-list li {
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: transparent;
+            margin-top: 30px;
+        }
+         footer p {
+            margin: 8px 0;
+         }
+         footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+         }
+         footer a:hover {
+            color: var(--hover-color);
+            text-shadow: 0 0 5px var(--glow-color);
+         }
+         
+        .animated {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .animated.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <header>
+        <div class="container">
+            <div class="profile-pic-container">Photo</div>
+            <h1>Shadab Ahmad</h1>
+            <p>Planning Manager in Footwear & Leather Technology</p>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="container animated">
+            <h2>Welcome to My Portfolio</h2>
+            <p>Experienced professional with a demonstrated history of working in the footwear industry. Skilled in Production Planning, ERP, and Sourcing.</p>
+            <a href="https://wa.me/918795137207" class="btn">Contact on WhatsApp</a>
+        </div>
+    </section>
+
+    <section id="objective">
+        <div class="container animated">
+            <h2>Career Objective</h2>
+            <p>To achieve a career with a good opportunity in a company that gives the chance of work satisfaction, appreciates good work, and believes in building a long-term relationship in the field of Footwear & Leather Technology [file:1].</p>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2>Work Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item animated">
+                    <span class="duration">December 2023 - Present</span>
+                    <h3>Planning Manager</h3>
+                    <p>SUPERHOUSE LTD SHOE DIVISION UNIT-1 [file:1]</p>
+                </div>
+                <div class="timeline-item animated">
+                    <span class="duration">April 2009 - November 2023</span>
+                    <h3>Sr. Executive in Planning Dept.</h3>
+                    <p>SUPERHOUSE LTD FASHION FOOTWEAR DIVISION UNIT-4 [file:1]</p>
+                </div>
+                <div class="timeline-item animated">
+                    <span class="duration">2007 - 2009</span>
+                    <h3>Store & Packing Incharge</h3>
+                    <p>SHARIQ TANNERS JAJMAU [file:1]</p>
+                </div>
+                <div class="timeline-item animated">
+                    <span class="duration">2004 - 2007</span>
+                    <h3>Assistant Store Incharge</h3>
+                    <p>SUPERHOUSE LTD. [file:1]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2>Educational Qualifications</h2>
+            <ul class="qualifications-list">
+                <li class="animated">Graduation from C.S.J.M.U Kanpur U.P. [file:1]</li>
+                <li class="animated">Diploma in PGDCA in computer application [file:1]</li>
+                <li class="animated">Diploma in TALLY version 5.2 [file:1]</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Get in touch:</p>
+            <p>Email: <a href="mailto:Shadab19822@gmail.com">Shadab19822@gmail.com</a></p>
+            <p>Phone: <a href="tel:+918795137207">+91 8795137207</a></p>
+            <p>&copy; 2025 Shadab Ahmad. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#0d6efd" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.6, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
+                "size": { "value": 3, "random": true, "anim": { "enable": false } },
+                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": false }, "resize": true },
+                "modes": { "repulse": { "distance": 100, "duration": 0.4 } }
+            },
+            "retina_detect": true
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const animatedElements = document.querySelectorAll('.animated');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            animatedElements.forEach(el => observer.observe(el));
+            
+            const expandableItems = document.querySelectorAll('.timeline-item, .qualifications-list li');
+            expandableItems.forEach(item => {
+                item.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    const currentlyExpanded = document.querySelector('.expanded');
+                    if (currentlyExpanded && currentlyExpanded !== this) {
+                        currentlyExpanded.classList.remove('expanded');
+                    }
+                    this.classList.toggle('expanded');
+                });
+            });
+
+            document.addEventListener('click', function() {
+                const expandedItem = document.querySelector('.expanded');
+                if (expandedItem) {
+                    expandedItem.classList.remove('expanded');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
